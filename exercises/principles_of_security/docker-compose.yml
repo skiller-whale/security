@@ -1,0 +1,48 @@
+# docker-compose.yml
+services:
+  board:
+    build:
+      context: board
+    ports:
+      - 1002:80
+  whale_api:
+    build:
+      context: whale_api
+    ports:
+      - "127.0.0.1:1003:8003"
+  get_whales:
+    image: curlimages/curl
+    entrypoint: >
+      curl
+      -w "\\n"
+      --header "Content-Type: application/json"
+      --header "Authorization: Bearer regular_user_token"
+      --request GET
+    command: whale_api:8003/whales
+  # docker compose run -e WHALE_NAME=<whale_name>  add_whale
+  add_whale:
+    environment:
+      WHALE_NAME: "skiller_whale"
+    image: curlimages/curl
+    entrypoint: >
+      sh -c '
+        curl --header "Content-Type: application/json" \
+        -w "\\n" \
+        --header "Authorization: Bearer admin_token" \
+        --request POST \
+        --data "{ \"whale\": \"$$WHALE_NAME\"}" \
+        whale_api:8003/whales
+      '
+    command: ""
+  hacker_whale:
+    image: curlimages/curl
+    entrypoint: >
+      sh -c '
+        curl --header "Content-Type: application/json" \
+        -w "\\n" \
+        --header "Authorization: Bearer old_service_token" \
+        --request POST \
+        --data "{ \"whale\": \"hacker_whale\"}" \
+        whale_api:8003/whales
+      '
+    command: ""

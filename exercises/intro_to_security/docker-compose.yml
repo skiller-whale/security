@@ -1,0 +1,7 @@
+# docker-compose.yml
+services:
+  frontend_service:
+    build:
+      context: password_reset
+    ports:
+      - 1002:80

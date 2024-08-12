@@ -1,0 +1,10 @@
+{
+    "GET /whales": [
+        "regular_user",
+        "admin"
+    ],
+    "POST /whales": [
+        "admin"
+    ]
+}
+

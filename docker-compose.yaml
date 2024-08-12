@@ -1,0 +1,14 @@
+name: "skiller-whale-docker"
+services:
+  sync:
+    image: "ghcr.io/skiller-whale/learnersync:0.2.1"
+    environment:
+      SERVER_URL: "https://train.skillerwhale.com/"
+      SW_RUNNING_IN_HOSTED_ENV:
+      WATCHER_BASE_PATH: "/app/exercises"
+      ATTENDANCE_ID_FILE: "/app/sync/attendance_id"
+      WATCHED_EXTS: "Dockerfile .yml .yaml .html .js .sh .json"
+      IGNORE_MATCH: ".git"
+    volumes:
+      - ./exercises:/app/exercises:ro
+      - ./attendance_id:/app/sync/attendance_id:ro

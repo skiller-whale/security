@@ -1,0 +1,254 @@
+/* body */
+body {
+  /* background-color: rgb(216, 220, 223); */
+  background-color: rgb(241, 243, 245);
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* header */
+.app-header {
+    background-color: rgb(43, 48, 53);
+    padding: 1em 4em 1em 4em;
+    border-bottom: 2px #6d7086 solid;
+}
+
+h1 {
+  padding: 0px 0px 0px 00px;
+  font-size: 2em;
+  color: white;
+  margin: 0 auto 0.2em auto;
+  max-width: 1200px;
+}
+
+h2 {
+  font-size: 0.8em;
+  color: rgb(227, 227, 227);
+  font-style: italic;
+  max-width: 1200px;
+  margin: 0 auto 0 auto;
+}
+
+/* app-body */
+.app-body {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  padding: 0 2em 0 0;
+}
+
+@media only screen and (max-width: 800px) {
+  .app-body {
+    flex-direction: column;
+    flex-flow: column-reverse;
+    align-items: center;
+  }
+
+  .board-controls {
+    text-align: center;
+  }
+}
+
+.app-body .board-wrap {
+  padding: 3em;
+  align-items: left;
+  flex-grow: 1;
+}
+
+.app-body .controls form {
+  width: 100%;
+  text-align: center;
+}
+
+input[type='text'] {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 20px;
+  margin: 2em 0 1em 0;
+  height: 30px;
+  padding: 0.5em;
+  font-size:  1em;
+  width: calc(100% - 1em);
+}
+
+button {
+  color: white;
+  background-color: rgb(108, 117, 125);
+  padding: 0.5em;
+  border: 1px solid black;
+  font-size: 1.05em;
+  display: inline-block;
+  border-radius: 5px;
+  margin: 10px;
+  max-width: 200px;
+  width: 100%;
+  margin: 0 0 1em 0;
+  height: 50px;
+  min-width: 150px;
+}
+
+button:hover {
+  background-color: rgb(98, 106, 113);
+  cursor: pointer;
+}
+
+button:active {
+  background-color: rgb(86, 93, 99);
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: rgb(132, 143, 153);
+  cursor: pointer;
+}
+
+.app-body .controls .username-email {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 20px;
+  margin: 2em 0 1em 0;
+  height: 30px;
+  padding: 0.5em;
+  font-size:  1em;
+  width: calc(100% - 1em);
+}
+
+/* errors */
+.app-body .error {
+  background-color: #f8d7da;
+  border: 1px solid #ccaeb1;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.app-body .success {
+  background-color: #d4edda;
+  border: 1px solid #155724;
+  padding: 10px;
+  color: #155724;
+  border-radius: 5px;
+}
+
+.app-body .info {
+  background-color: #d4e0ed;
+  border: 1px solid #434165;
+  padding: 10px;
+  color: #434165;
+  border-radius: 5px;
+}
+
+/* board */
+.app-body .board-wrap {
+  padding: 2em;
+}
+
+.board-header {
+  padding-bottom: 1em;
+  border-bottom: 1px solid #434165;
+}
+
+div.board {
+  padding: 1em;
+  margin: 1em 0 1em 0;
+  /* border: 1px solid #434165; */
+}
+
+.app-body .results .results-label {
+  padding: 0.7em;
+  font-style: italic;
+}
+
+ul.tickets {
+  padding: 0 0em 0em 0em;
+}
+  
+ul.tickets li {
+  display: block;
+  border: 2px solid rgb(181, 190, 198);
+  border-bottom: none;
+  max-width: 500px;
+  padding: 0.7em;
+}
+
+ul.tickets li:hover {
+  background-color: #e7e7e7;
+}
+
+ul.tickets li:first-child {
+  border-radius: 5px 5px 0px 0px;
+}
+
+ul.tickets li:last-child {
+  border: 2px solid rgb(181, 190, 198);
+  border-radius: 0px 0px 5px 5px;
+}
+
+.board-controls {
+  padding-top: 1em;
+}
+
+.board-controls button {
+  margin-right: 1em;
+}
+
+/* profile */
+.profile-wrap {
+  padding: 3em .3em .3em 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  /* border: 1px solid #434165; */
+}
+
+.profile {
+  border: 1px solid #434165;
+  border-radius: 5px;
+  padding: 1em;
+}
+
+.profile img {
+  width: 50px;
+  height: 50px;
+}
+
+.profile .account-name {
+  line-height: 50px;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.profile .permissions {
+  color: #434165;
+
+}
+
+/* modal */
+div.modal {
+
+  /* background-color: rgb(216, 220, 223); */
+  /* background-color: rgb(241, 243, 245); */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  /* height: 300px; */
+  border: 1px solid #434165;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+  background: white;
+}
+
+div.modal button {
+  margin-top: 1em;
+  margin-right: 1em;
+}
