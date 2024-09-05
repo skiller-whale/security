@@ -7,32 +7,41 @@ app.use(express.json())
 // read configuration files
 var fs = require('fs')
 
-var accessControl = 'allowlist';
-// var accessControl = 'blocklist';
+// var accessControl = 'allowlist';
+var accessControl = 'denylist';
 var allWhales = [
     'Humpback Whale',
     'Orca',
     'Blue Whale'
 ];
 
+/**
+ *
+ * @param {String} type [Type of request - GET/POST]
+ * @param {String} path [URL Path]
+ * @returns [Either `next()` if access is granted or appropriate response.]
+ */
 function requireAccess(type, path) {
     return function(req, res, next) {
-        if (!req.accessToken) {
+        // If `accessToken` is undefined, Forbidden (by default).
+        if (!req.accessToken)
             return res.status(403).json({'error': 'Forbidden.'})
-        }
 
         var token = req.accessToken;
         var tokensRoles = JSON.parse(fs.readFileSync('acl/tokens.json', 'utf8'))
 
-        if (!tokensRoles[token]) {
+        // If the token isn't in `tokensRoles`, return 403.
+        if (!tokensRoles.hasOwnProperty(token)) {
             return res.status(403).json({'error': 'Invalid Token.'})
         }
 
         const accessKey = `${type} ${path}`
+        // Get the roles from the token.
         const roles = tokensRoles[token]['roles']
-        var allowed = false
+        var allowed = true
 
         if (accessControl == 'allowlist') {
+            // For allowlists, check if any role is in the allowlist.
             var allowList = JSON.parse(fs.readFileSync('acl/allowlist.json', 'utf8'))
             const allowedRoles = allowList[accessKey]
             for (const role of roles) {
@@ -41,13 +50,14 @@ function requireAccess(type, path) {
                     break
                 }
             }
-        } else if (accessControl == 'blocklist') {
-            var blockList = JSON.parse(fs.readFileSync('acl/blocklist.json', 'utf8'))
-            const blockedRoles = blockList[accessKey]
-            
+        } else if (accessControl == 'denylist') {
+            // For a denylsit, check if no role is in the denylist.
+            var denyList = JSON.parse(fs.readFileSync('acl/denylist.json', 'utf8'))
+            const deniedRoles = denyList[accessKey]
+
             allowed = true
             for (const role of roles) {
-                if (blockedRoles.includes(role)) {
+                if (deniedRoles.includes(role)) {
                     allowed = false
                     break
                 }
@@ -56,7 +66,7 @@ function requireAccess(type, path) {
 
         if (allowed) {
             console.log(`Access granted to '${accessKey}' for ${token}.`)
-            next()
+            return next()
         } else {
             return res.status(403).json({'error': 'Forbidden.'})
         }
@@ -83,7 +93,7 @@ app.use(function(req, res, next) {
     if (header.length != 2 || header[0] != 'Bearer') {
         return res.status(400).json({'error': 'Malformed header.'})
     }
-    
+
     req.accessToken = header[1]
     next()
 });
@@ -102,7 +112,7 @@ app.post('/whales', requireAccess('POST', '/whales'), (req, res) => {
     if (!('whale' in req.body)) {
         res.status(400)
         res.send({'error': 'No whale specified'})
-    } else { 
+    } else {
         allWhales.push(req.body.whale)
         res.sendStatus(200)
     }
