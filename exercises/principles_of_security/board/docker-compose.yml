@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build:
+      context: frontend
+    ports:
+      - 1001:80
+    depends_on:
+      - backend
+  backend:
+    build:
+      context: backend
+    ports:
+      - 2001:8080
