@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 import { BoardContext } from './BoardContext';
 
 const TOKEN = 'christian_whale_token'
+const BASE_URL = `${window.location.protocol}//${window.location.host.replace(/(?<=[:-])[1-9][0-9][0-9][0-9]/,2001)}`
 
 function getTickets(onGetTickets) {
-    fetch('http://localhost:2001/tickets', {
+    fetch(`${BASE_URL}/tickets`, {
         headers: {
             "Authorization": "Bearer christian_whale_token"
         }
@@ -17,7 +18,7 @@ function getTickets(onGetTickets) {
 }
 
 function getBoard(onGetBoard, token) {
-    return fetch('http://localhost:2001/boards', {
+    return fetch(`${BASE_URL}/boards`, {
         headers: {
             "Authorization": `Bearer ${token}`
         }
@@ -27,7 +28,7 @@ function getBoard(onGetBoard, token) {
 }
 
 function postTickets(tickets, token) {
-    return fetch('http://localhost:2001/tickets', {
+    return fetch(`${BASE_URL}/tickets`, {
         method: 'POST',
         headers: {
             "Authorization": `Bearer ${token}`,
