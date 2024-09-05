@@ -7,8 +7,9 @@ app.use(express.json())
 // read configuration files
 var fs = require('fs')
 
-// var accessControl = 'allowlist';
-var accessControl = 'denylist';
+var accessControl = 'allowlist';
+// var accessControl = 'denylist';
+
 var allWhales = [
     'Humpback Whale',
     'Orca',
