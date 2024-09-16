@@ -1,0 +1,150 @@
+/* body */
+body {
+  /* background-color: rgb(216, 220, 223); */
+  background-color: rgb(241, 243, 245);
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* header */
+.app-header {
+  background-color: rgb(43, 48, 53);
+  padding: 1em 4em 1em 4em;
+  border-bottom: 2px #6d7086 solid;
+}
+
+h1 {
+  padding: 0px 0px 0px 00px;
+  font-size: 2em;
+  color: white;
+  margin: 0 auto 0.2em auto;
+  max-width: 1200px;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+/* app-body */
+.app-body {
+  max-width: 500px;
+  margin: auto;
+}
+
+.app-body .controls {
+  padding: 3em;
+  text-align: center;
+  align-items: center;
+}
+
+.app-body .controls form {
+  width: 100%;
+  text-align: center;
+}
+
+.app-body .controls button:hover {
+  background-color: rgb(98, 106, 113);
+  cursor: pointer;
+}
+
+.app-body .controls button:active {
+  background-color: rgb(86, 93, 99);
+  cursor: pointer;
+}
+
+.app-body .controls button:disabled {
+  background-color: rgb(132, 143, 153);
+  cursor: pointer;
+}
+/* errors */
+.app-body .error {
+  background-color: #f8d7da;
+  border: 1px solid #ccaeb1;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.app-body .success {
+  background-color: #d4edda;
+  border: 1px solid #155724;
+  padding: 10px;
+  color: #155724;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.app-body .info {
+  background-color: #d4e0ed;
+  border: 1px solid #434165;
+  padding: 10px;
+  color: #434165;
+  border-radius: 5px;
+}
+
+.app-body h1{
+  color: #000;
+}
+
+.border {
+  border: 1px solid #888;
+}
+.p-8 {
+  padding: 8px;
+}
+
+.app-body img {
+  width: 100%;
+}
+
+.flex{
+  display: flex;
+  flex-direction: row;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+header {
+  color: #fff;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.app-body .row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.app-body .row label {
+  flex-basis: 20%;
+}
+
+.h-72 {
+  height: 72px;
+}
+
+.review {
+  padding: 8px;
+  margin-top: 20px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+.review .header {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.mt-0 {
+  margin-top: 0px
+}
