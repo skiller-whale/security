@@ -1,0 +1,24 @@
+# docker-compose.yml
+services:
+  web:
+    build:
+      context: .
+    volumes:
+     - ./backend/src:/app/src
+    ports:
+      - 1002:3000
+    environment:
+      PGHOST: database
+      PGUSER: skiller-whale
+      PGPASSWORD: example
+    depends_on:
+      - database
+  database:
+    image: postgres:16.4-alpine3.20
+    environment:
+      POSTGRES_USER: skiller-whale
+      POSTGRES_PASSWORD: example
+    volumes:
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432

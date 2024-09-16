@@ -1,0 +1,28 @@
+# docker-compose.yml
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - ./backend:/app
+      - node_modules:/app/node_modules
+    ports:
+      - 1003:3000
+    environment:
+      PGHOST: database
+      PGUSER: skiller-whale
+      PGPASSWORD: example
+      COOKIE_SECRET_KEY: 8cb3742e7e349144c2a3a3682d317fb683b4b753d0a84686ec40678dd0673acb8e5308c75ff76c3f8d6116cf2eb99505efea15a7f1c158f4db5e57b72abd5be6
+    depends_on:
+      - database
+  database:
+    image: postgres:16.4-alpine3.20
+    environment:
+      POSTGRES_USER: skiller-whale
+      POSTGRES_PASSWORD: example
+    volumes:
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+volumes:
+  node_modules:

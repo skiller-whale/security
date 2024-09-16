@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fishy Emporium</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="App">
+      <header class="app-header flex">
+
+        <h1 class="grow">Fishy Emporium</h1>
+        <% if(user) { %>
+          <span>Logged in as: <%= user.name%></span>
+        <% } %>
+      </header>
+
+      <div class="app-body">
+
+        <% if(message){ %>
+          <div class="info"> <%= message %></div>
+        <% } %>
+
+
+        <% if(user) { %>
+
+        <h1 class="mt-20">Enjoying your purchase of &quot;Killer Whale&quot;?</h1>
+
+        <div>
+          <img src="/images/orca.jpg" />
+        </div>
+
+        <%- include('reviews', {reviews, new_review, user}) %>
+
+        <% } else { %>
+
+        <h1 class="mt-20">Create an Account</h1>
+        <form method="POST" action="/users" class="p-8 border">
+          <label>Your Name:</label>
+          <input name="name" value="" />
+          <button>Save</button>
+        </form>
+
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>

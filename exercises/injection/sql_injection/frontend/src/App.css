@@ -1,0 +1,131 @@
+/* body */
+body {
+  /* background-color: rgb(216, 220, 223); */
+  background-color: rgb(241, 243, 245);
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* header */
+.app-header {
+  background-color: rgb(43, 48, 53);
+  padding: 1em 4em 1em 4em;
+  border-bottom: 2px #6d7086 solid;
+}
+
+h1 {
+  padding: 0px 0px 0px 00px;
+  font-size: 2em;
+  color: white;
+  margin: 0 auto 0.2em auto;
+  max-width: 1200px;
+}
+
+h2 {
+  font-size: 0.8em;
+  color: rgb(227, 227, 227);
+  font-style: italic;
+  max-width: 1200px;
+  margin: 0 auto 0 auto;
+}
+
+/* app-body */
+.app-body {
+  max-width: 500px;
+  margin: auto;
+}
+
+.app-body .controls {
+  padding: 3em;
+  text-align: center;
+  align-items: center;
+}
+
+.app-body .controls form {
+  width: 100%;
+  text-align: center;
+}
+
+.app-body .controls button:hover {
+  background-color: rgb(98, 106, 113);
+  cursor: pointer;
+}
+
+.app-body .controls button:active {
+  background-color: rgb(86, 93, 99);
+  cursor: pointer;
+}
+
+.app-body .controls button:disabled {
+  background-color: rgb(132, 143, 153);
+  cursor: pointer;
+}
+/* errors */
+.app-body .error {
+  background-color: #f8d7da;
+  border: 1px solid #ccaeb1;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.app-body .success {
+  background-color: #d4edda;
+  border: 1px solid #155724;
+  padding: 10px;
+  color: #155724;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.app-body .info {
+  background-color: #d4e0ed;
+  border: 1px solid #434165;
+  padding: 10px;
+  color: #434165;
+  border-radius: 5px;
+}
+
+table.orders {
+  margin-top: 20px;
+  width: auto;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.orders thead th {
+  border-bottom-width: 1px;
+  padding: 1rem 0.75rem;
+}
+
+table.orders td {
+  padding: 1rem 0.75rem;
+}
+
+.discount-form {
+  margin-top: 20px;
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.discount-form input {
+  padding: 4px 2px 4px 2px;
+  flex-grow: 1;
+}
+
+.discount-form button {
+  display: inline-block;
+  padding: 0.5em;
+  border: 1px solid black;
+  font-size: 1.05em;
+  border-radius: 5px;
+  flex-basis: 100%;
+}

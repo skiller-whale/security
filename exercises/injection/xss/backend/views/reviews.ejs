@@ -1,0 +1,41 @@
+
+<div class="border p-8">
+  <h2>Add a Review</h2>
+
+  <form action="/reviews" method="POST">
+    <div class="row">
+      <label>Title</label>
+      <input class="grow" name="title" value="<%- new_review ? new_review.title : '' %>"/>
+    </div>
+    <div class="row mt-20 ">
+      <label>Review</label>
+      <textarea class="grow h-72" name="body" value="<%- new_review ? new_review.body : ''%>"></textarea>
+    </div>
+
+    <button>Add</button>
+  </form>
+</div>
+
+<% if(reviews.length > 0) { %>
+  <% reviews.forEach((review) =>{ %>
+    <div class="review">
+      <div class="header">
+        <h3 class="grow mt-0"><%= review.title %></h3>
+        <% if(review.user_id == user.id) {%>
+          <span>by You</span>
+          <form method="POST" action="<%= `/reviews/${review.id}/delete` %>">
+            <button>Delete</button>
+          </form>
+        <% } else { %>
+          <%- userLink(review) %>
+        <% } %>
+      </div>
+
+      <div class="body">
+        <%- review.body %>
+      </div>
+    </div>
+  <%})%>
+<% }else{ %>
+  <p>No Review yet - you could be the first!</p>
+<% } %>
