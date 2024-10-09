@@ -1,0 +1,28 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Fishy Emporium</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1 class="grow">Fishy Emporium</h1>
+  <div>
+    {% if g.user %}
+      <span class="logged-in">Logged in as: {{ g.user['username'] }}</span>
+
+      <form method="POST" action="{{ url_for('auth.logout') }}">
+        <button type="submit">Log Out</button>
+      </form>
+    {% endif %}
+  </ul>
+</nav>
+<section class="app-body">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+  {% block content %}{% endblock %}
+</section>

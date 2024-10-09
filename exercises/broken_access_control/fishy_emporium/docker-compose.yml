@@ -1,0 +1,9 @@
+# docker-compose.yml
+services:
+  app:
+    build:
+      context: .
+    volumes:
+      - ./app:/src/app
+    ports:
+      - 1001:5000
