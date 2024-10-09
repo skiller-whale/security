@@ -2,7 +2,7 @@
 <div class="border p-8">
   <h2>Add a Review</h2>
 
-  <form action="/reviews" method="POST">
+  <form class="add-review" action="/reviews" method="POST">
     <div class="row">
       <label>Title</label>
       <input class="grow" name="title" value="<%- new_review ? new_review.title : '' %>"/>
@@ -12,7 +12,9 @@
       <textarea class="grow h-72" name="body" value="<%- new_review ? new_review.body : ''%>"></textarea>
     </div>
 
-    <button>Add</button>
+    <div class="submit row mt-20 ">
+      <button>Add</button>
+    </div>
   </form>
 </div>
 
@@ -22,7 +24,7 @@
       <div class="header">
         <h3 class="grow mt-0"><%= review.title %></h3>
         <% if(review.user_id == user.id) {%>
-          <span>by You</span>
+          <span class="review-author">by You</span>
           <form method="POST" action="<%= `/reviews/${review.id}/delete` %>">
             <button>Delete</button>
           </form>

@@ -1,14 +1,29 @@
 import pg from 'pg'
 import express from 'express'
+import * as fs from 'fs'
 
 const app = express()
 const port = 3000
+const LOGFILE_PATH = process.env.LOGFILE_PATH || '/app/logs/backend.log'
+
+fs.appendFile(LOGFILE_PATH, `Application Restart\nMETHOD \t PATH \t\t QUERY\n`, function(err) {
+  console.log(`Logging failed (${err}).`)
+})
 
 const { Client } = pg
 let client = null
 
 app.use(express.static("public"))
 
+app.use(function(req, res, next) {
+  // This is a bad idea in production (logging potentially sensitive data to a plaintext file).
+  // This is used so that your coach can see your progress.
+  fs.appendFile(LOGFILE_PATH, `${req.method} \t ${req.path} \t ${JSON.stringify(req.query)}\n`, function(err) {
+    console.log(`Logging failed (${err}).`)
+  })
+
+  next()
+});
 
 app.get('/basket', async (req, res, next) => {
   try {

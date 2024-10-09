@@ -10,6 +10,7 @@ import usersRouter from './routes/users.js';
 import reviewsRouter from './routes/reviews.js';
 
 import {userLink} from "./helpers.js"
+import * as fs from 'fs'
 
 const app = express();
 
@@ -36,6 +37,26 @@ app.use((req, res, next) => {
   next()
 })
 */
+
+const LOGFILE_PATH = process.env.LOGFILE_PATH || '/app/logs/backend.log'
+
+fs.appendFile(LOGFILE_PATH, `Application Restart\nMETHOD \t PATH \t\t QUERY \t\t BODY\n`, function(err) {
+  console.log(`Logging failed (${err}).`)
+})
+
+app.use(function(req, res, next) {
+  // This is a bad idea in production (logging potentially sensitive data to a plaintext file).
+  // This is used so that your coach can see your progress.
+
+  if (req.body || req.query) {
+    fs.appendFile(LOGFILE_PATH, `${req.method} \t ${req.path} \t ${JSON.stringify(req.query)} \t ${JSON.stringify(req.body)}\n`, function(err) {
+      console.log(`Logging failed (${err}).`)
+    })
+  }
+
+  next()
+});
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

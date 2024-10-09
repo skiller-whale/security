@@ -44,20 +44,41 @@ h2 {
   text-align: center;
 }
 
-.app-body .controls button:hover {
+button {
+  color: white;
+  background-color: rgb(108, 117, 125);
+  padding: 0.5em;
+  border: 1px solid black;
+  font-size: 1.05em;
+  display: inline-block;
+  border-radius: 5px;
+  margin: 10px;
+  max-width: 200px;
+  /* width: 100%; */
+  margin: 0 0 1em 0;
+  height: 40px;
+  min-width: 150px;
+}
+
+button:hover {
   background-color: rgb(98, 106, 113);
   cursor: pointer;
 }
 
-.app-body .controls button:active {
+button:active {
   background-color: rgb(86, 93, 99);
   cursor: pointer;
 }
 
-.app-body .controls button:disabled {
+button:disabled {
   background-color: rgb(132, 143, 153);
   cursor: pointer;
 }
+
+.add-review .submit button {
+  margin-left: auto;
+}
+
 /* errors */
 .app-body .error {
   background-color: #f8d7da;
@@ -65,7 +86,7 @@ h2 {
   color: #721c24;
   padding: 10px;
   border-radius: 5px;
-  margin-top: 10px;
+  margin-top: 220px;
 }
 
 .app-body .success {
@@ -74,7 +95,7 @@ h2 {
   padding: 10px;
   color: #155724;
   border-radius: 5px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .app-body .info {
@@ -83,6 +104,7 @@ h2 {
   padding: 10px;
   color: #434165;
   border-radius: 5px;
+  margin-top: 20px;
 }
 
 .app-body h1{
@@ -111,6 +133,11 @@ h2 {
 
 header {
   color: #fff;
+}
+
+header .logged-in {
+  line-height: 40px;
+  margin-right: 30px;
 }
 
 .mt-20 {
@@ -143,6 +170,11 @@ header {
   display: flex;
   flex-direction: row;
   gap: 4px;
+}
+
+.review .review-author {
+  line-height: 40px;
+  margin-right: 10px;
 }
 
 .mt-0 {
