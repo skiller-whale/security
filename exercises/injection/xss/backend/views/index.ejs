@@ -10,7 +10,11 @@
 
         <h1 class="grow">Fishy Emporium</h1>
         <% if(user) { %>
-          <span>Logged in as: <%= user.name%></span>
+          <span class="logged-in">Logged in as: <%= user.name%></span>
+
+          <form method="POST" action="/users/logout">
+            <button>Logout</button>
+          </form>
         <% } %>
       </header>
 
@@ -33,7 +37,7 @@
 
         <% } else { %>
 
-        <h1 class="mt-20">Create an Account</h1>
+        <h1 class="mt-20">Create an Account/Login</h1>
         <form method="POST" action="/users" class="p-8 border">
           <label>Your Name:</label>
           <input name="name" value="" />

@@ -5,6 +5,7 @@ services:
       context: .
     volumes:
      - ./backend/src:/app/src
+     - ./logs:/app/logs
     ports:
       - 1002:3000
     environment:
