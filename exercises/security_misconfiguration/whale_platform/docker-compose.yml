@@ -1,0 +1,22 @@
+# docker-compose.yml
+version: '3.7' # This version refers to the version of the docker-compose file specification.
+services:
+  frontend_service:
+    build:
+      context: frontend
+    ports:
+      - 1002:80
+  backend_service:
+    build:
+      context: backend
+    # Specify environment variables
+    env_file: backend.env
+    ports:
+      - 2001:8080
+  db_service:
+    # Either both or empty is fine
+    # profiles: ["dev", "test"]
+    image: postgres:12-alpine
+    env_file: db.env
+    ports:
+      - 1003:5432

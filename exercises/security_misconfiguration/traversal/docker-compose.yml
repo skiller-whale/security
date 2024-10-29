@@ -1,0 +1,8 @@
+version: '3.8'
+services:
+  pyserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 2001:2001
