@@ -56,7 +56,7 @@ def load_logged_in_user():
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if g.user is not None:
-        return redirect(url_for('users.users', user_id=g.user['id']))
+        return redirect(url_for('users.user', user_id=g.user['id']))
 
     if request.method == 'POST':
         username = request.form['username']
@@ -79,7 +79,7 @@ def login():
             session['user_id'] = user['id']
 
             flash('Logged in', 'success')
-            return redirect(url_for('users.users', user_id=user['id']))
+            return redirect(url_for('users.users'))
 
         flash(error, 'error')
 
@@ -104,12 +104,23 @@ def login_required(view):
     return wrapped_view
 
 
-def has_role(view, role):
+def is_admin(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user is None or role not in g.user['roles']:
+        if g.user is None or 'is_admin' not in g.user or not g.user['is_admin']:
             return redirect(url_for('auth.login'))
 
         return view(**kwargs)
 
     return wrapped_view
+
+
+# def has_role(view, role):
+#     @functools.wraps(view)
+#     def wrapped_view(**kwargs):
+#         if g.user is None or role not in g.user['roles']:
+#             return redirect(url_for('auth.login'))
+
+#         return view(**kwargs)
+
+#     return wrapped_view

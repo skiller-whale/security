@@ -21,9 +21,13 @@ def validate_user_data(user_data):
 
 
 @bp.route('/users/', methods=('GET',))
+def users():
+    return render_template('users.html', all_users=USERS.values())
+
+
 @bp.route('/users/<int:user_id>', methods=('GET', 'POST'))
 @login_required
-def users(user_id=None):
+def user(user_id=None):
     if user_id is None:
         user_id = g.user['id']
         return redirect(url_for('users.users', user_id=user_id))
@@ -33,20 +37,22 @@ def users(user_id=None):
     try:
         user = USERS[user_id]
         # you can only edit your own profile
-        user['can_edit'] = (g.user['id'] == user['id']) or ('admin' in g.user['roles'])
+        user['can_edit'] = (g.user['id'] == user['id']) or (g.user['is_admin'])
     except KeyError:
         flash('No such user', 'error')
 
 
     if request.method == 'POST':
-        if user is not None and (user['id'] == g.user['id'] or 'admin' in g.user['roles']):
+        if user is not None and (user['id'] == g.user['id'] or g.user['is_admin']):
             try:
                 user_data = {
                     'username': request.form['username'],
                     'name': request.form['name'],
                     'address': request.form['address'],
                     'age': int(request.form['age']),
-                    'roles': set(request.form.getlist('roles'))
+                    # 'roles': set(request.form.getlist('roles')),
+                    'is_admin': request.form.get('is_admin') == 'on',
+                    'is_public': request.form.get('is_public') == 'on'
                 }
 
                 try:
@@ -69,4 +75,4 @@ def users(user_id=None):
                 flash('Malformed update request', 'error')
 
 
-    return render_template('users.html', user=user)
+    return render_template('user.html', user=user)
