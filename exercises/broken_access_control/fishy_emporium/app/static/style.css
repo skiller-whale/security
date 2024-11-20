@@ -6,6 +6,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
 }
 
 /* header */
@@ -20,7 +21,12 @@ nav {
 
 nav .logged-in {
   line-height: 40px;
-  margin-right: 30px;
+  /* margin-right: 30px; */
+  text-align: right;
+}
+
+.logout-form {
+  display: inline-block;
 }
 
 h1 {
@@ -180,6 +186,17 @@ input[type='text'], input[type='password'] {
   width: calc(100% - 1em);
 }
 
+.checkbox-label {
+  display: inline-block !important;
+  height: 1.5em;
+  line-height: 1.5em;
+}
+
+input[type='checkbox'] {
+  width: 1.5em;
+  height: 1.5em;
+}
+
 .login-form button {
     height: 3em;
 }
@@ -219,4 +236,16 @@ input[type='text'], input[type='password'] {
 
 .hidden {
   display: none;
+}
+
+
+.user-info {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 2em;
+  margin: 2em 0 2em 0;
+}
+
+.dib {
+  display: inline-block !important;
 }

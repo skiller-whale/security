@@ -5,11 +5,22 @@
   <h1 class="grow">Fishy Emporium</h1>
   <div>
     {% if g.user %}
-      <span class="logged-in">Logged in as: {{ g.user['username'] }}</span>
+      <div class="logged-in">Logged in as: {{ g.user['username'] }}</div>
 
-      <form method="POST" action="{{ url_for('auth.logout') }}">
-        <button type="submit">Log Out</button>
-      </form>
+      <div>
+        <a href="{{ url_for('users.users') }}">
+          <button type="submit">All Users</button>
+        </a>
+
+        <a href="{{ url_for('users.user', user_id=g.user['id']) }}">
+          <button type="submit">Edit Profile</button>
+        </a>
+
+        <form class="logout-form" method="POST" action="{{ url_for('auth.logout') }}">
+          <button type="submit">Log Out</button>
+        </form>
+      </div>
+
     {% endif %}
   </ul>
 </nav>
@@ -18,11 +29,11 @@
     {% block header %}{% endblock %}
   </header>
   {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="{{ category }}">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="{{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
   {% block content %}{% endblock %}
 </section>

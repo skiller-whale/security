@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}User Panel{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% if user is not none %}
+    {% if user['can_edit'] %}
+      <div class="app-body">
+        <form class="user-details" autocomplete="off" method="POST">
+          <h3>User Details</h3>
+          <div>
+            <label class="is_admin">User type: {{"admin" if user['is_admin'] else "regular user" }}</label>
+          </div>
+          <div>
+              <label for="username">Username</label>
+              <input type="text" name="username" id="username" value="{{ user['username'] }}"/>
+          </div>
+          <div>
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" value="{{ user['name'] }}"/>
+          </div>
+          <div>
+              <label for="address">Address</label>
+              <input type="text" name="address" id="address" value="{{ user['address'] }}"/>
+          </div>
+          <div>
+              <label for="age">Age</label>
+              <input type="text" name="age" id="age" value="{{ user['age'] }}"/>
+          </div>
+          <div>
+              <label for="is_public" class="checkbox-label">Details are public</label>
+              <input type="checkbox" name="is_public" id="is_public" {{ "checked" if user['is_public'] }}/>
+          </div>
+          <button type="submit">Update Details</button>
+        </form>
+      </div>
+    {% else %}
+      <div class="app-body">
+        <div class="user-details">
+          <h3>User Details</h3>
+          <div>Username: <span>{{ user['username'] }}</span></div>
+          <div>Name:     <span>{{ user['name'] }}</span></div>
+          <div>Address:  <span>{{ user['address'] }}</span></div>
+          <div>Age:      <span>{{ user['age'] }}</span></div>
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
