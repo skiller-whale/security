@@ -5,6 +5,7 @@ services:
     build:
       context: frontend
     ports:
+      # Expose port `80` as port `1002`.
       - 1002:80
   backend_service:
     build:

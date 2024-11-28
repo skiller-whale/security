@@ -7,6 +7,8 @@ services:
     ports:
       - 8001:8001
     read_only: true
+    environment:
+      WERKZEUG_DEBUG_PIN: off
     tmpfs:
       - /app/static/cached
 

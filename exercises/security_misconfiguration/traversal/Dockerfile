@@ -1,5 +1,6 @@
-FROM python:3.11
+FROM python:3.11-alpine
 
+RUN apk add shadow
 RUN pip install flask
 
 RUN mkdir /secrets
@@ -12,6 +13,3 @@ WORKDIR /app
 COPY server.py .
 
 CMD python server.py
-
-# GET-ting this returns the secret!
-# http://127.0.0.1:5000/getfile?file=../secrets/secret.txt
