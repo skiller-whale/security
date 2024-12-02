@@ -43,7 +43,7 @@ app.get('/basket', async (req, res, next) => {
       let result = null
 
       try {
-        result = await client.query(`SELECT * from promo_codes where code='${code}' LIMIT 1`)
+        result = await client.query('SELECT * from promo_codes where code=$1 LIMIT 1', [code])
       }
       catch(err) {
         err.message += `\nHINT: ${err.hint}`
