@@ -7,7 +7,7 @@ services:
       SW_RUNNING_IN_HOSTED_ENV:
       WATCHER_BASE_PATH: "/app/exercises"
       ATTENDANCE_ID_FILE: "/app/sync/attendance_id"
-      WATCHED_EXTS: "Dockerfile .yml .yaml .html .js .sh .json"
+      WATCHED_EXTS: "Dockerfile .yml .yaml .html .js .sh .json .log"
       IGNORE_MATCH: ".git"
     volumes:
       - ./exercises:/app/exercises:ro
