@@ -1,0 +1,19 @@
+# docker-compose.yml
+services:
+  password_reset:
+    build:
+      context: password_reset
+    ports:
+      - 1002:80
+  board_frontend:
+    build:
+      context: board/frontend
+    ports:
+      - 1001:80
+    depends_on:
+      - board_backend
+  board_backend:
+    build:
+      context: board/backend
+    ports:
+      - 2001:8080
