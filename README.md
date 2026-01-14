@@ -1,6 +1,6 @@
 # Skiller Whale, Exercises for Core Security
 
-This repo includes exercises to accompany Skiller Whale sessions on Core Security
+This repo includes exercises to accompany Skiller Whale sessions on Core Security.
 
 During each session you'll be asked to write and edit code in some of the files.
 
