@@ -1,5 +1,4 @@
 # docker-compose.yml
-version: '3.7' # This version refers to the version of the docker-compose file specification.
 services:
   webserver:
     build:
