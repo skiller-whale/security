@@ -1,7 +1,7 @@
 name: "skiller-whale-docker"
 services:
   sync:
-    image: "ghcr.io/skiller-whale/learnersync:0.2.1"
+    image: "ghcr.io/skiller-whale/learnersync:0.2.7"
     environment:
       SERVER_URL: "https://train.skillerwhale.com/"
       SW_RUNNING_IN_HOSTED_ENV:
